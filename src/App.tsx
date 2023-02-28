@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Container } from "@mui/material";
 import "./App.scss";
 import Search from "./components/Search";
 
 function App() {
-  const [count, setCount] = useState(0);
   const containerStyle = {
     border: "1px solid #4B5E51",
     borderRadius: ".625rem",
@@ -15,10 +14,16 @@ function App() {
     p: "1rem",
   };
 
+  const [userName, setUserName] = useState("octocat");
+
+  useEffect(() => {
+    // TODO: request data
+  }, [userName]);
+
   return (
     <main className="App">
       <Container maxWidth="lg" sx={containerStyle}>
-        <Search />
+        <Search value={userName} onChange={setUserName} />
       </Container>
     </main>
   );
