@@ -2,10 +2,10 @@ import { useState, KeyboardEvent, ChangeEvent } from "react";
 import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
-import { InputSearch } from "../interfaces/index";
+import { ISearchInput } from "../interfaces/index";
 import Box from "@mui/material/Box";
 
-function Search(props: InputSearch) {
+function Search(props: ISearchInput) {
   const [inputValue, setInputValue] = useState("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
