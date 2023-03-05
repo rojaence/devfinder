@@ -9,6 +9,7 @@ import { IGithubUser } from "./services/user/user.model";
 import { ISnackbarConfig } from "./interfaces";
 import Search from "./components/Search";
 import UserInfo from "./containers/UserInfo";
+import UserInfoSkeleton from "./components/UserInfoSkeleton";
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
@@ -96,7 +97,7 @@ function App() {
     <main className="App">
       <Container maxWidth="md" sx={containerStyle}>
         <Search value={userName} onChange={setUserName} />
-        <UserInfo userData={userData} />
+        {loading ? <UserInfoSkeleton /> : <UserInfo userData={userData} />}
       </Container>
 
       <Snackbar

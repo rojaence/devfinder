@@ -86,7 +86,7 @@ function UserInfo({ userData }: Props) {
 
   return (
     <section className="user-info-container">
-      <Box sx={{ gridArea: "profile" }}>
+      <Box sx={{ gridArea: "profile", justifySelf: "center" }}>
         <CardMedia
           component="img"
           sx={{ borderRadius: "50%" }}
@@ -161,7 +161,14 @@ function UserInfo({ userData }: Props) {
       <Box sx={{ gridArea: "social" }}>
         <Grid container columnSpacing={1} rowSpacing={2}>
           {social.map((item) => (
-            <Grid item direction="column" key={item.id} xs={12} md={6}>
+            <Grid
+              item
+              direction="column"
+              container
+              key={item.id}
+              xs={12}
+              md={6}
+            >
               <Stack direction="row" spacing={1} alignItems="center">
                 {item.icon}
                 {item.type === "link" && item.link ? (

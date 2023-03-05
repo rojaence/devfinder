@@ -1,14 +1,28 @@
 .user-info-container {
   display: grid;
   grid-template-areas: "profile basicInfo" "bio bio" "stats stats" "social social";
-  grid-template-columns: minmax(auto, 14rem) auto;
-  gap: 3rem;
+  grid-template-columns: 0.4fr 1fr;
+  gap: 3rem 2rem;
   padding: 2.5rem 0;
   @media screen and (min-width: 600px) {
     grid-template-areas: "profile basicInfo" "profile bio" "stats stats" "social social";
+    gap: 3rem;
   }
   @media screen and (min-width: 900px) {
     grid-template-areas: "profile basicInfo" "profile bio" "profile stats" "profile social";
     padding: 2.5rem 16px;
+  }
+}
+
+.profile-skeleton {
+  width: 90px;
+  height: 90px !important;
+  @media screen and (min-width: 600px) {
+    width: 140px;
+    height: 140px !important;
+  }
+  @media screen and (min-width: 900px) {
+    width: 220px;
+    height: 220px !important;
   }
 }
