@@ -1,5 +1,5 @@
 import { useState, useEffect, forwardRef } from "react";
-import { Button, Container } from "@mui/material";
+import { Container } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
 import "./App.scss";
@@ -21,7 +21,7 @@ function App() {
   const containerStyle = {
     border: "1px solid #4B5E51",
     borderRadius: ".625rem",
-    height: "600px",
+    minHeight: "600px",
     backdropFilter: "blur(.625rem)",
     backgroundColor: "rgba(47, 47, 47 ,0.5)",
     boxShadow: "2px 2px 10px 0 #202020",
@@ -63,7 +63,7 @@ function App() {
                 : "An error has ocurried",
             severity: "error",
           });
-          setUserData;
+          setUserData(defaultData);
         }
       } finally {
         setLoading(false);
@@ -94,7 +94,7 @@ function App() {
 
   return (
     <main className="App">
-      <Container maxWidth="lg" sx={containerStyle}>
+      <Container maxWidth="md" sx={containerStyle}>
         <Search value={userName} onChange={setUserName} />
         <UserInfo userData={userData} />
       </Container>

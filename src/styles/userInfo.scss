@@ -1,0 +1,14 @@
+.user-info-container {
+  display: grid;
+  grid-template-areas: "profile basicInfo" "bio bio" "stats stats" "social social";
+  grid-template-columns: minmax(auto, 14rem) auto;
+  gap: 3rem;
+  padding: 2.5rem 0;
+  @media screen and (min-width: 600px) {
+    grid-template-areas: "profile basicInfo" "profile bio" "stats stats" "social social";
+  }
+  @media screen and (min-width: 900px) {
+    grid-template-areas: "profile basicInfo" "profile bio" "profile stats" "profile social";
+    padding: 2.5rem 16px;
+  }
+}
