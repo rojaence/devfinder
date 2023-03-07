@@ -9,7 +9,6 @@ import { IGithubUser } from "./services/user/user.model";
 import { ISnackbarConfig } from "./interfaces";
 import Search from "./components/Search";
 import UserInfo from "./containers/UserInfo";
-import UserInfoSkeleton from "./components/UserInfoSkeleton";
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
@@ -32,7 +31,7 @@ function App() {
   const [userName, setUserName] = useState<string>("octocat");
   const [defaultData, setDefaultData] = useState<Partial<IGithubUser>>({});
   const [userData, setUserData] = useState<Partial<IGithubUser>>({});
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [snackbar, setSnackbar] = useState<ISnackbarConfig>({
     open: false,
     message: "",
@@ -97,7 +96,7 @@ function App() {
     <main className="App">
       <Container maxWidth="md" sx={containerStyle}>
         <Search value={userName} onChange={setUserName} />
-        {loading ? <UserInfoSkeleton /> : <UserInfo userData={userData} />}
+        <UserInfo userData={userData} loading={loading} />
       </Container>
 
       <Snackbar

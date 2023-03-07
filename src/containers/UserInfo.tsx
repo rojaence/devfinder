@@ -5,6 +5,7 @@ import {
   Divider,
   Grid,
   Stack,
+  Skeleton,
   Typography,
 } from "@mui/material";
 import TwitterIcon from "@mui/icons-material/Twitter";
@@ -19,9 +20,10 @@ import "../styles/userInfo.scss";
 
 interface Props {
   userData: Partial<IGithubUser>;
+  loading: boolean;
 }
 
-function UserInfo({ userData }: Props) {
+function UserInfo({ userData, loading = true }: Props) {
   console.log(userData);
 
   const formatDate = (value: string) => {
@@ -90,36 +92,54 @@ function UserInfo({ userData }: Props) {
   return (
     <section className="user-info-container">
       <Box sx={{ gridArea: "profile", justifySelf: "center" }}>
-        <CardMedia
-          component="img"
-          sx={{ borderRadius: "50%" }}
-          image={userData.avatar_url}
-          title="User avatar"
-        />
+        {!loading ? (
+          <CardMedia
+            component="img"
+            sx={{ borderRadius: "50%" }}
+            image={userData.avatar_url}
+            title="User avatar"
+          />
+        ) : (
+          <Skeleton variant="circular" className="profile-skeleton" />
+        )}
       </Box>
       <Box sx={{ gridArea: "basicInfo", alignSelf: "center" }}>
-        <Grid container spacing={1}>
-          <Grid item xs={12} md={8}>
-            <Typography
-              variant="h1"
-              sx={{ fontSize: "1.2rem", fontWeight: "bold" }}
-            >
-              {userData.name}
-            </Typography>
+        {!loading ? (
+          <Grid container spacing={1}>
+            <Grid item xs={12} md={8}>
+              <Typography
+                variant="h1"
+                sx={{ fontSize: "1.2rem", fontWeight: "bold" }}
+              >
+                {userData.name}
+              </Typography>
+            </Grid>
+            <Grid item xs={12} md={8}>
+              <Typography variant="h2" sx={{ fontSize: "1rem" }}>
+                {`@${userData.login}`}
+              </Typography>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <Typography variant="h2" sx={{ fontSize: "1rem" }}>
+                {`Joined ${
+                  userData.created_at ? formatDate(userData.created_at) : ""
+                }`}
+              </Typography>
+            </Grid>
           </Grid>
-          <Grid item xs={12} md={8}>
-            <Typography variant="h2" sx={{ fontSize: "1rem" }}>
-              {`@${userData.login}`}
-            </Typography>
+        ) : (
+          <Grid container spacing={1}>
+            <Grid item xs={12} md={8}>
+              <Skeleton variant="rounded" />
+            </Grid>
+            <Grid item xs={12} md={8}>
+              <Skeleton variant="rounded" />
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <Skeleton variant="rounded" />
+            </Grid>
           </Grid>
-          <Grid item xs={12} md={4}>
-            <Typography variant="h2" sx={{ fontSize: "1rem" }}>
-              {`Joined ${
-                userData.created_at ? formatDate(userData.created_at) : ""
-              }`}
-            </Typography>
-          </Grid>
-        </Grid>
+        )}
       </Box>
       <Box sx={{ gridArea: "bio" }}>
         <Typography variant="body1">
@@ -148,20 +168,35 @@ function UserInfo({ userData }: Props) {
         </Stack>
       </Box>
       <Box sx={{ gridArea: "social" }}>
-        <Grid container columnSpacing={1} rowSpacing={2}>
-          {social.map((item) => (
+        {!loading ? (
+          <Grid container columnSpacing={1} rowSpacing={2}>
+            {social.map((item) => (
+              <Grid
+                item
+                direction="column"
+                container
+                key={item.id}
+                xs={12}
+                md={6}
+              >
+                <SocialItem key={item.id} data={item} />
+              </Grid>
+            ))}
+          </Grid>
+        ) : (
+          [1, 2, 3].map((item) => (
             <Grid
+              key={`social-skeleton-${item}`}
               item
               direction="column"
               container
-              key={item.id}
               xs={12}
               md={6}
             >
-              <SocialItem key={item.id} data={item} />
+              <Skeleton variant="rounded" />
             </Grid>
-          ))}
-        </Grid>
+          ))
+        )}
       </Box>
     </section>
   );
