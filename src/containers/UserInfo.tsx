@@ -40,17 +40,17 @@ function UserInfo({ userData, loading = true }: Props) {
     {
       id: "stat-1",
       text: "Repos",
-      value: userData.public_repos,
+      value: userData.public_repos || 0,
     },
     {
       id: "stat-2",
       text: "Followers",
-      value: userData.followers,
+      value: userData.followers || 0,
     },
     {
       id: "stat-3",
       text: "Following",
-      value: userData.following,
+      value: userData.following || 0,
     },
   ];
 
@@ -60,14 +60,14 @@ function UserInfo({ userData, loading = true }: Props) {
       text: "Location",
       icon: <LocationOnIcon />,
       type: SocialItemType.TEXT,
-      value: userData.location || "Not available",
+      value: userData.location,
     },
     {
       id: "social-2",
       text: "Url",
       icon: <LinkIcon />,
       type: SocialItemType.LINK,
-      value: userData.html_url || "Not available",
+      value: userData.html_url,
       link: userData.html_url,
     },
     {
@@ -75,7 +75,7 @@ function UserInfo({ userData, loading = true }: Props) {
       text: "Twitter",
       icon: <TwitterIcon />,
       type: SocialItemType.LINK,
-      value: userData.twitter_username || "Not available",
+      value: userData.twitter_username,
       link: userData.twitter_username
         ? `https://twitter.com/${userData.twitter_username?.replace("@", "")}`
         : "",
@@ -85,7 +85,7 @@ function UserInfo({ userData, loading = true }: Props) {
       text: "Company",
       icon: <ApartmentIcon />,
       type: SocialItemType.TEXT,
-      value: userData.company || "Not available",
+      value: userData.company,
     },
   ];
 
@@ -111,19 +111,20 @@ function UserInfo({ userData, loading = true }: Props) {
                 variant="h1"
                 sx={{ fontSize: "1.2rem", fontWeight: "bold" }}
               >
-                {userData.name}
+                {userData.name || "No Data"}
               </Typography>
             </Grid>
             <Grid item xs={12} md={8}>
               <Typography variant="h2" sx={{ fontSize: "1rem" }}>
-                {`@${userData.login}`}
+                {`@${userData.login || "nodata"}`}
               </Typography>
             </Grid>
             <Grid item xs={12} md={4}>
               <Typography variant="h2" sx={{ fontSize: "1rem" }}>
-                {`Joined ${
-                  userData.created_at ? formatDate(userData.created_at) : ""
-                }`}
+                {userData.created_at &&
+                  `Joined ${
+                    userData.created_at ? formatDate(userData.created_at) : ""
+                  }`}
               </Typography>
             </Grid>
           </Grid>

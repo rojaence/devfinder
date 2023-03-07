@@ -11,10 +11,10 @@ function SocialItem({ data }: Props) {
       {data.icon}
       {data.type === "link" && data.link ? (
         <Link href={data.link} target="_blank" underline="none">
-          {data.value}
+          {data.value || "Not available"}
         </Link>
       ) : (
-        <Typography variant="body1">{data.value}</Typography>
+        <Typography variant="body1">{data.value || "Not available"}</Typography>
       )}
     </Stack>
   );
