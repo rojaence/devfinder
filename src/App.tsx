@@ -55,12 +55,16 @@ function App() {
       } catch (error: unknown) {
         if (error instanceof Error) {
           closeSnackbar();
+          let errorMessage: string = "An error has ocurried";
+          if (error.message) {
+            errorMessage = error.message;
+          }
           setSnackbar({
             open: true,
             message:
               error.cause === "Not Found"
                 ? `User ${userName} not found`
-                : "An error has ocurried",
+                : errorMessage,
             severity: "error",
           });
           setUserData(defaultData);

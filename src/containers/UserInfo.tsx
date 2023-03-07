@@ -67,7 +67,7 @@ function UserInfo({ userData, loading = true }: Props) {
       text: "Url",
       icon: <LinkIcon />,
       type: SocialItemType.LINK,
-      value: userData.html_url,
+      value: userData.html_url || "Not available",
       link: userData.html_url,
     },
     {
