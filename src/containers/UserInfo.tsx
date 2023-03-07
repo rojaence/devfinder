@@ -4,7 +4,6 @@ import {
   CardMedia,
   Divider,
   Grid,
-  Link,
   Stack,
   Typography,
 } from "@mui/material";
@@ -12,11 +11,15 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import LinkIcon from "@mui/icons-material/Link";
+import StatItem from "../components/StatItem";
+import SocialItem from "../components/SocialItem";
+import { ISocialItem, IStatItem, SocialItemType } from "../interfaces";
+
 import "../styles/userInfo.scss";
 
-type Props = {
+interface Props {
   userData: Partial<IGithubUser>;
-};
+}
 
 function UserInfo({ userData }: Props) {
   console.log(userData);
@@ -31,7 +34,7 @@ function UserInfo({ userData }: Props) {
     return format;
   };
 
-  const stats = [
+  const stats: Partial<IStatItem>[] = [
     {
       id: "stat-1",
       text: "Repos",
@@ -49,19 +52,19 @@ function UserInfo({ userData }: Props) {
     },
   ];
 
-  const social = [
+  const social: Partial<ISocialItem>[] = [
     {
       id: "social-1",
       text: "Location",
       icon: <LocationOnIcon />,
-      type: "text",
+      type: SocialItemType.TEXT,
       value: userData.location || "Not available",
     },
     {
       id: "social-2",
       text: "Url",
       icon: <LinkIcon />,
-      type: "link",
+      type: SocialItemType.LINK,
       value: userData.html_url,
       link: userData.html_url,
     },
@@ -69,7 +72,7 @@ function UserInfo({ userData }: Props) {
       id: "social-3",
       text: "Twitter",
       icon: <TwitterIcon />,
-      type: "link",
+      type: SocialItemType.LINK,
       value: userData.twitter_username || "Not available",
       link: userData.twitter_username
         ? `https://twitter.com/${userData.twitter_username?.replace("@", "")}`
@@ -79,7 +82,7 @@ function UserInfo({ userData }: Props) {
       id: "social-4",
       text: "Company",
       icon: <ApartmentIcon />,
-      type: "text",
+      type: SocialItemType.TEXT,
       value: userData.company || "Not available",
     },
   ];
@@ -140,21 +143,7 @@ function UserInfo({ userData }: Props) {
           }}
         >
           {stats.map((stat) => (
-            <Box
-              key={stat.id}
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                gap: "0.5rem",
-                alignItems: "center",
-              }}
-            >
-              <Typography variant="subtitle2">{stat.text}</Typography>
-              <Typography variant="body1" fontWeight="bold">
-                {stat.value}
-              </Typography>
-            </Box>
+            <StatItem key={stat.id} data={stat} />
           ))}
         </Stack>
       </Box>
@@ -169,16 +158,7 @@ function UserInfo({ userData }: Props) {
               xs={12}
               md={6}
             >
-              <Stack direction="row" spacing={1} alignItems="center">
-                {item.icon}
-                {item.type === "link" && item.link ? (
-                  <Link href={item.link} target="_blank" underline="none">
-                    {item.value}
-                  </Link>
-                ) : (
-                  <Typography variant="body1">{item.value}</Typography>
-                )}
-              </Stack>
+              <SocialItem key={item.id} data={item} />
             </Grid>
           ))}
         </Grid>
