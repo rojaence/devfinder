@@ -9,6 +9,7 @@ import { IGithubUser } from "./services/user/user.model";
 import { ISnackbarConfig } from "./interfaces";
 import Search from "./components/Search";
 import UserInfo from "./containers/UserInfo";
+import AppHeader from "./containers/AppHeader";
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
@@ -21,7 +22,7 @@ function App() {
   const containerStyle = {
     border: "1px solid #4B5E51",
     borderRadius: ".625rem",
-    minHeight: "600px",
+    minHeight: "550px",
     backdropFilter: "blur(.625rem)",
     backgroundColor: "rgba(47, 47, 47 ,0.5)",
     boxShadow: "2px 2px 10px 0 #202020",
@@ -98,6 +99,9 @@ function App() {
 
   return (
     <main className="App">
+      <Container maxWidth="md" sx={{ mb: "1.5rem" }}>
+        <AppHeader />
+      </Container>
       <Container maxWidth="md" sx={containerStyle}>
         <Search value={userName} onChange={setUserName} />
         <UserInfo userData={userData} loading={loading} />
