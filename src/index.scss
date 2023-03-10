@@ -8,18 +8,24 @@
   color-scheme: light dark;
   --c-error-color: #c74036;
   --c-succes-color: #357a38;
-  --c-card-bg: #260a37;
-}
-
-body {
-  min-height: 100vh;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-image: linear-gradient(
+  --c-card-bg-dark: #260a37;
+  --c-card-bg-light: #e6e2f4;
+  --bg-gradient-light: linear-gradient(
+    to right bottom,
+    #b3a1d8,
+    #c3b7e2,
+    #c3b7e2,
+    #d4cceb,
+    #e6e2f4,
+    #e6e2f4,
+    #e6e2f4,
+    #e6e2f4,
+    #d4cceb,
+    #d4cceb,
+    #b3a1d8,
+    #b3a1d8
+  );
+  --bg-gradient-dark: linear-gradient(
     to right bottom,
     #32074d,
     #2f0848,
@@ -34,6 +40,16 @@ body {
     #2a0b3d,
     #2c0b40
   );
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 .c-text-field {

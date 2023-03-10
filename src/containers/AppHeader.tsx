@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import {
   FormControl,
   InputLabel,
@@ -9,12 +10,16 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import SettingsBrightnessIcon from "@mui/icons-material/SettingsBrightness";
+import { ColorModeContext } from "../context/theme";
+import { ColorMode } from "../constants";
 
 interface Props {}
 
 function AppHeader(props: Props) {
+  const theme = useContext(ColorModeContext);
+
   const handleChange = (event: SelectChangeEvent) => {
-    console.log(event.target.value);
+    theme.toggleColorMode(event.target.value);
   };
 
   return (
@@ -32,26 +37,26 @@ function AppHeader(props: Props) {
         <Select
           labelId="theme-color-mode"
           id="theme-color-mode"
-          value="dark"
+          value={theme.colorMode}
           label="Theme"
           onChange={handleChange}
         >
-          <MenuItem value={"light"}>
+          <MenuItem value={ColorMode.Light}>
             <Stack direction="row" gap=".5rem">
               <LightModeIcon />
-              <span>Light</span>
+              <span>{ColorMode.Light}</span>
             </Stack>
           </MenuItem>
-          <MenuItem value={"dark"}>
+          <MenuItem value={ColorMode.Dark}>
             <Stack direction="row" gap=".5rem">
               <DarkModeIcon />
-              <span>Dark</span>
+              <span>{ColorMode.Dark}</span>
             </Stack>
           </MenuItem>
-          <MenuItem value={"system"}>
+          <MenuItem value={ColorMode.System}>
             <Stack direction="row" gap=".5rem">
               <SettingsBrightnessIcon />
-              <span>System</span>
+              <span>{ColorMode.System}</span>
             </Stack>
           </MenuItem>
         </Select>

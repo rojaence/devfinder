@@ -7,6 +7,7 @@ import {
   Stack,
   Skeleton,
   Typography,
+  useTheme,
 } from "@mui/material";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import ApartmentIcon from "@mui/icons-material/Apartment";
@@ -24,7 +25,7 @@ interface Props {
 }
 
 function UserInfo({ userData, loading = true }: Props) {
-  console.log(userData);
+  const theme = useTheme();
 
   const formatDate = (value: string) => {
     const dateValue = new Date(value);
@@ -158,7 +159,10 @@ function UserInfo({ userData, loading = true }: Props) {
           divider={<Divider orientation="vertical" flexItem />}
           spacing={1}
           sx={{
-            backgroundColor: "var(--c-card-bg)",
+            backgroundColor:
+              theme.palette.mode === "dark"
+                ? "var(--c-card-bg-dark)"
+                : "var(--c-card-bg-light)",
             borderRadius: 2,
             padding: "1rem .5rem",
           }}

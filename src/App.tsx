@@ -1,5 +1,5 @@
 import { useState, useEffect, forwardRef } from "react";
-import { Container } from "@mui/material";
+import { Container, useTheme } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
 import "./App.scss";
@@ -19,14 +19,27 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
 });
 
 function App() {
+  const theme = useTheme();
+
   const containerStyle = {
-    border: "1px solid #4B5E51",
-    borderRadius: ".625rem",
-    minHeight: "550px",
-    backdropFilter: "blur(.625rem)",
-    backgroundColor: "rgba(47, 47, 47 ,0.5)",
-    boxShadow: "2px 2px 10px 0 #202020",
-    p: "1rem",
+    dark: {
+      border: "1px solid #7f16c5",
+      borderRadius: ".625rem",
+      minHeight: "550px",
+      backdropFilter: "blur(.625rem)",
+      backgroundColor: "rgba(47, 47, 47 ,0.5)",
+      boxShadow: "2px 2px 10px 0 #202020",
+      p: "1rem",
+    },
+    light: {
+      border: "1px solid #c277f5",
+      borderRadius: ".625rem",
+      minHeight: "550px",
+      backdropFilter: "blur(.625rem)",
+      backgroundColor: "rgba(255, 255, 255 ,0.4)",
+      boxShadow: "2px 2px 10px 0 #7a7a7a",
+      p: "1rem",
+    },
   };
 
   const [userName, setUserName] = useState<string>("octocat");
@@ -102,7 +115,14 @@ function App() {
       <Container maxWidth="md" sx={{ mb: "1.5rem" }}>
         <AppHeader />
       </Container>
-      <Container maxWidth="md" sx={containerStyle}>
+      <Container
+        maxWidth="md"
+        sx={
+          theme.palette.mode === "dark"
+            ? containerStyle.dark
+            : containerStyle.light
+        }
+      >
         <Search value={userName} onChange={setUserName} />
         <UserInfo userData={userData} loading={loading} />
       </Container>
