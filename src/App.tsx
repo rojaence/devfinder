@@ -10,6 +10,7 @@ import { ISnackbarConfig } from "./interfaces";
 import Search from "./components/Search";
 import UserInfo from "./containers/UserInfo";
 import AppHeader from "./containers/AppHeader";
+import AppFooter from "./containers/AppFooter";
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
@@ -112,7 +113,7 @@ function App() {
 
   return (
     <main className="App">
-      <Container maxWidth="md" sx={{ mb: "1.5rem" }}>
+      <Container maxWidth="md" sx={{ mb: "1rem" }}>
         <AppHeader />
       </Container>
       <Container
@@ -126,6 +127,8 @@ function App() {
         <Search value={userName} onChange={setUserName} />
         <UserInfo userData={userData} loading={loading} />
       </Container>
+
+      <AppFooter />
 
       <Snackbar
         open={snackbar.open}
