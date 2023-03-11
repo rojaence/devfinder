@@ -14,7 +14,7 @@ A web app that consumes the github API to search user accounts and show basic da
 
 ## Links
 
-Live site:
+Live site: https://devfinder-sable.vercel.app/
 
 ## Screenshots
 
