@@ -1,4 +1,4 @@
-# DEVFINDER
+# devfinder
 
 A React App using Github Api
 
@@ -17,6 +17,10 @@ A web app that consumes the github API to search user accounts and show basic da
 Live site:
 
 ## Screenshots
+
+![image](https://drive.google.com/uc?export=view&id=1Vo_dGXmJ0c-LACVx0MS0Z_mTxuSdSY-s)
+
+![image](https://drive.google.com/uc?export=view&id=1tuPxW_ryYBusYsUUuL_LB8RrMr1Dtp9s)
 
 ## Author
 
