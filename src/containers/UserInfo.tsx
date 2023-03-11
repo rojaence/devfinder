@@ -8,6 +8,7 @@ import {
   Skeleton,
   Typography,
   useTheme,
+  Link,
 } from "@mui/material";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import ApartmentIcon from "@mui/icons-material/Apartment";
@@ -68,8 +69,8 @@ function UserInfo({ userData, loading = true }: Props) {
       text: "Url",
       icon: <LinkIcon />,
       type: SocialItemType.LINK,
-      value: userData.html_url,
-      link: userData.html_url,
+      value: userData.blog,
+      link: userData.blog,
     },
     {
       id: "social-3",
@@ -117,7 +118,15 @@ function UserInfo({ userData, loading = true }: Props) {
             </Grid>
             <Grid item xs={12} md={8}>
               <Typography variant="h2" sx={{ fontSize: "1rem" }}>
-                {`@${userData.login || "nodata"}`}
+                {userData.login ? (
+                  <Link
+                    target="_blank"
+                    href={`https://www.github.com/${userData.login}`}
+                    underline="none"
+                  >{`@${userData.login}`}</Link>
+                ) : (
+                  "@nodata"
+                )}
               </Typography>
             </Grid>
             <Grid item xs={12} md={4}>
